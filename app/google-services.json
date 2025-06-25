@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "777686104596",
+    "project_id": "bowlmate123",
+    "storage_bucket": "bowlmate123.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:777686104596:android:933d347d3e72243a388501",
+        "android_client_info": {
+          "package_name": "com.example.bowlmate"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCB0gSwUwxSjawhhUUX5R9QIh_VgrXv3OM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
