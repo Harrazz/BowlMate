@@ -122,19 +122,23 @@
     <!-- Sign Up Button -->
     <Button
         android:id="@+id/button3"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginStart="64dp"
-        android:layout_marginEnd="64dp"
-        android:backgroundTint="#FFEB3B"
+        android:layout_width="261dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#FF2C38"
         android:onClick="createUser"
         android:text="Sign Up"
-        android:textColor="#000000"
+        android:textColor="#ffffff"
+        android:elevation="8dp"
+        android:translationZ="4dp"
+        android:outlineProvider="background"
+        android:stateListAnimator="@null"
         android:padding="10dp"
+        android:clipToOutline="true"
         app:layout_constraintTop_toBottomOf="@id/password"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5" />
 
     <!-- Login Redirect -->
     <TextView
