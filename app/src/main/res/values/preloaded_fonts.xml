@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="preloaded_fonts" translatable="false">
+        <item>@font/agbalumo</item>
+        <item>@font/alkatra_bold</item>
         <item>@font/allan_bold</item>
+        <item>@font/angkor</item>
+        <item>@font/beth_ellen</item>
+        <item>@font/mochiy_pop_p_one</item>
+        <item>@font/ultra</item>
     </array>
 </resources>

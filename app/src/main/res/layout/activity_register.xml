@@ -5,31 +5,40 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context=".RegisterActivity">
+
+    <include
+        android:id="@+id/header"
+        layout="@layout/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="48dp"
+        android:fontFamily="@font/alkatra_bold"
         android:text="REGISTRATION"
         android:textColor="@color/black"
-        android:textSize="32sp"
-        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/header" />
 
-    <!-- Name -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/nameLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:layout_marginStart="32dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="32dp"
         app:boxBackgroundMode="outline"
-        app:boxStrokeColor="@color/black"
+        app:boxStrokeColor="#FF2C38"
+        app:hintTextColor="#FF2C38"
         app:layout_constraintTop_toBottomOf="@id/textView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -43,17 +52,17 @@
             android:textCursorDrawable="@null" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Phone -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/phoneLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:layout_marginStart="32dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="32dp"
         app:boxBackgroundMode="outline"
-        app:boxStrokeColor="@color/black"
+        app:boxStrokeColor="#FF2C38"
+        app:hintTextColor="#FF2C38"
         app:layout_constraintTop_toBottomOf="@id/nameLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -68,17 +77,17 @@
             android:textCursorDrawable="@null" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Email -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/email"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:layout_marginStart="32dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="32dp"
         app:boxBackgroundMode="outline"
-        app:boxStrokeColor="@color/black"
+        app:boxStrokeColor="#FF2C38"
+        app:hintTextColor="#FF2C38"
         app:layout_constraintTop_toBottomOf="@id/phoneLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -93,18 +102,18 @@
             android:textCursorDrawable="@null" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Password -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/password"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:layout_marginStart="32dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="32dp"
         app:boxBackgroundMode="outline"
         app:passwordToggleEnabled="true"
-        app:boxStrokeColor="@color/black"
+        app:boxStrokeColor="#FF2C38"
+        app:hintTextColor="#FF2C38"
         app:layout_constraintTop_toBottomOf="@id/email"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -119,7 +128,6 @@
             android:textCursorDrawable="@null" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Sign Up Button -->
     <Button
         android:id="@+id/button3"
         android:layout_width="261dp"

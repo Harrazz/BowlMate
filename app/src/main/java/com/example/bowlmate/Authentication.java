@@ -23,6 +23,15 @@ public class Authentication extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        ImageButton backButton = findViewById(R.id.back_button);
+        backButton.setOnClickListener(v -> finish()); // Go to previous activity
+
+        ImageButton infoButton = findViewById(R.id.info_button);
+        infoButton.setOnClickListener(v -> {
+            Intent intent = new Intent(Authentication.this, AboutApp.class);
+            startActivity(intent);
+        });
     }
 
     public void openRegister(View v){

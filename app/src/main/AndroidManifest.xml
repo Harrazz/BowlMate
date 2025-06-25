@@ -17,21 +17,25 @@
             android:exported="false"
             android:screenOrientation="portrait"/>
         <activity
+            android:name=".AboutApp"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".RegisterActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Authentication"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Splash"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".SplashPopup"
             android:exported="true"

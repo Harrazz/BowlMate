@@ -36,6 +36,15 @@ public class RegisterActivity extends AppCompatActivity {
             return insets;
         });
 
+        ImageButton backButton = findViewById(R.id.back_button);
+        backButton.setOnClickListener(v -> finish()); // Go to previous activity
+
+        ImageButton infoButton = findViewById(R.id.info_button);
+        infoButton.setOnClickListener(v -> {
+            Intent intent = new Intent(RegisterActivity.this, AboutApp.class);
+            startActivity(intent);
+        });
+
         nameInput = findViewById(R.id.editTextName);
         phoneInput = findViewById(R.id.editTextPhone);
         e1 = findViewById(R.id.editText);
