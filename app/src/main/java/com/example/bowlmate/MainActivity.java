@@ -37,6 +37,26 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        ImageButton btnBowlingBall = findViewById(R.id.btnBowlingBall);
+        btnBowlingBall.setOnClickListener(v -> {
+            startActivity(new Intent(MainActivity.this, BowlingBall.class));
+        });
+
+        ImageButton btnShopLocation = findViewById(R.id.btnShopLocation);
+        btnShopLocation.setOnClickListener(v -> {
+            startActivity(new Intent(MainActivity.this, BowlingLocation.class));
+        });
+
+        ImageButton btnYourScore = findViewById(R.id.btnYourScore);
+        btnYourScore.setOnClickListener(v -> {
+            startActivity(new Intent(MainActivity.this, BowlingScore.class));
+        });
+
+        ImageButton btnProfile = findViewById(R.id.btnProfile);
+        btnProfile.setOnClickListener(v -> {
+            startActivity(new Intent(MainActivity.this, Profile.class));
+        });
+
         Button logoutButton = findViewById(R.id.logoutButton);
         logoutButton.setOnClickListener(v -> {
             // Show confirmation dialog before logout
