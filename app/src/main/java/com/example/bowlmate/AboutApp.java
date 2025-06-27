@@ -27,7 +27,7 @@ public class AboutApp extends AppCompatActivity {
 
         TextView link = findViewById(R.id.textView4);
         link.setOnClickListener(v -> {
-            String url = "https://github.com/Harrazz/ElectricBillCalculator";
+            String url = "https://github.com/Harrazz/BowlMate";
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.setData(Uri.parse(url));
             startActivity(intent);

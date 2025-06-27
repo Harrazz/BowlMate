@@ -38,7 +38,7 @@
         android:layout_marginTop="24dp"
         android:gravity="center"
         android:lineSpacingExtra="4dp"
-        android:text="Group Member:\nMuhammad Harraz Hariri bin Hazrilhasnie (2024974617)\nMuhammad Harraz Hariri bin Hazrilhasnie (2024974617)\nMuhammad Harraz Hariri bin Hazrilhasnie (2024974617)\nMuhammad Harraz Hariri bin Hazrilhasnie (2024974617)\n\nCourse: ICT602 - Mobile Technology and Development\n© 2025 Harraz. All Rights Reserved."
+        android:text="Group Member:\nMUHAMMAD HARRAZ HARIRI BIN HAZRILHASNIE\n(2024974617)\nAMIRUL IMAN BIN SHAHDAN\n(2024903025)\nSITI FATIMAHTULZAHRA BINTI HAMZAH\n(2024948097)\nSITI NURATHIRAH BINTI NIZAM ALI\n(2024755215)\n\nCourse: ICT602 - Mobile Technology and Development\n© 2025 BowlMate. All Rights Reserved."
         android:textColor="#1F1F1F"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"

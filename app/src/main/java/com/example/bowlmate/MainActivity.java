@@ -83,4 +83,24 @@ public class MainActivity extends AppCompatActivity {
                     .show();
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        showLogoutDialog();
+    }
+
+    private void showLogoutDialog() {
+        new AlertDialog.Builder(MainActivity.this)
+                .setTitle("Logout")
+                .setMessage("Are you sure you want to log out?")
+                .setPositiveButton("Logout", (dialog, which) -> {
+                    FirebaseAuth.getInstance().signOut();
+                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                    finish();
+                })
+                .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss())
+                .show();
+    }
 }
