@@ -29,7 +29,20 @@ public class MainActivity extends AppCompatActivity {
         });
 
         ImageButton backButton = findViewById(R.id.back_button);
-        backButton.setOnClickListener(v -> finish()); // Go to previous activity
+        backButton.setOnClickListener(v -> {
+            new AlertDialog.Builder(MainActivity.this)
+                    .setTitle("Logout")
+                    .setMessage("Are you sure you want to log out?")
+                    .setPositiveButton("Logout", (dialog, which) -> {
+                        FirebaseAuth.getInstance().signOut();
+                        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                        finish();
+                    })
+                    .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss())
+                    .show();
+        });
 
         ImageButton infoButton = findViewById(R.id.info_button);
         infoButton.setOnClickListener(v -> {
