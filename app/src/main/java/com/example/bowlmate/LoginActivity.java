@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.media.AudioAttributes;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
@@ -85,9 +86,28 @@ public class LoginActivity extends AppCompatActivity {
         findViewById(R.id.textView2).setOnClickListener(v -> {
             startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
         });
+
+        // Forgot Password
+        findViewById(R.id.textViewForgotPassword).setOnClickListener(v -> {
+            String email = emailInput.getText().toString().trim();
+
+            if (email.isEmpty()) {
+                Toast.makeText(this, "Please enter your email to reset password", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            mAuth.sendPasswordResetEmail(email)
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(this, "Password reset email sent", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(this, "Failed to send reset email", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        });
     }
 
-    public void loginUser(android.view.View view) {
+    public void loginUser(View view) {
         String email = emailInput.getText().toString().trim();
         String password = passwordInput.getText().toString().trim();
 
@@ -150,7 +170,6 @@ public class LoginActivity extends AppCompatActivity {
 
     private void showLoginNotification() {
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        Uri soundUri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.sound);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel(
@@ -162,7 +181,6 @@ public class LoginActivity extends AppCompatActivity {
             channel.enableLights(true);
             channel.setLightColor(Color.GREEN);
             channel.enableVibration(true);
-            channel.setSound(soundUri, null);
             notificationManager.createNotificationChannel(channel);
         }
 
@@ -171,7 +189,6 @@ public class LoginActivity extends AppCompatActivity {
                 .setContentTitle("Login Successful")
                 .setContentText("Welcome back to BowlMate!")
                 .setAutoCancel(true)
-                .setSound(soundUri)
                 .build();
 
         notificationManager.notify(1001, notification);

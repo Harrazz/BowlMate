@@ -59,19 +59,12 @@ public class MainActivity extends AppCompatActivity {
 
         Button logoutButton = findViewById(R.id.logoutButton);
         logoutButton.setOnClickListener(v -> {
-            // Show confirmation dialog before logout
             new AlertDialog.Builder(MainActivity.this)
                     .setTitle("Logout")
-                    .setMessage("Are you sure you want to log out?")
-                    .setPositiveButton("Yes", (dialog, which) -> {
-                        // Sign out the user
+                    .setMessage("Are you sure you want to log out and exit?")
+                    .setPositiveButton("Logout & Exit", (dialog, which) -> {
                         FirebaseAuth.getInstance().signOut();
-
-                        // Redirect to LoginActivity and clear back stack
-                        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        startActivity(intent);
-                        finish(); // Finish MainActivity
+                        finishAffinity(); // Exit the app
                     })
                     .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss())
                     .show();

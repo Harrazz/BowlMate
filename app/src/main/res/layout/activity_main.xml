@@ -158,7 +158,7 @@
         android:outlineProvider="background"
         android:padding="10dp"
         android:stateListAnimator="@null"
-        android:text="Logout"
+        android:text="Logout &amp; Exit"
         android:textColor="#FFFFFF"
         android:translationZ="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
