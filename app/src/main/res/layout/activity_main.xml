@@ -74,7 +74,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Shop Location"
+                android:text="Alley &amp; Shop"
                 android:textAlignment="center"
                 android:textColor="@android:color/black" />
         </LinearLayout>

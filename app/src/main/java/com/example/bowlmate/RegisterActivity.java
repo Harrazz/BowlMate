@@ -75,6 +75,18 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
+        if (!phone.matches("^01\\d{8,9}$")) {
+            Toast.makeText(getApplicationContext(), "Invalid phone number", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (!isValidPassword(password)) {
+            Toast.makeText(getApplicationContext(),
+                    "Password must be at least 6 characters, with 1 number and 1 uppercase letter",
+                    Toast.LENGTH_LONG).show();
+            return;
+        }
+
         // 🔍 Step 1: Check if phone number already exists
         db.collection("users")
                 .whereEqualTo("phone", phone)
@@ -132,5 +144,9 @@ public class RegisterActivity extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+    private boolean isValidPassword(String password) {
+        return password.matches("^(?=.*[A-Z])(?=.*\\d).{6,}$");
     }
 }

@@ -101,8 +101,8 @@ public class Profile extends AppCompatActivity {
         builder.setPositiveButton("Update", (dialog, which) -> {
             String newPassword = newPasswordInput.getText().toString().trim();
 
-            if (newPassword.length() < 6) {
-                Toast.makeText(this, "Password must be at least 6 characters", Toast.LENGTH_SHORT).show();
+            if (!isValidPassword(newPassword)) {
+                Toast.makeText(this, "Password must be at least 6 characters,\ninclude 1 uppercase letter and 1 number", Toast.LENGTH_LONG).show();
                 return;
             }
 
@@ -119,5 +119,9 @@ public class Profile extends AppCompatActivity {
         builder.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
 
         builder.show();
+    }
+
+    private boolean isValidPassword(String password) {
+        return password.matches("^(?=.*[A-Z])(?=.*\\d).{6,}$");
     }
 }

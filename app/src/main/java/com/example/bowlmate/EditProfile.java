@@ -72,6 +72,11 @@ public class EditProfile extends AppCompatActivity {
                     return;
                 }
 
+                if (!newPhone.matches("^01\\d{8,9}$")) {
+                    Toast.makeText(EditProfile.this, "Invalid phone number", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 db.collection("users")
                         .whereEqualTo("phone", newPhone)
                         .get()
