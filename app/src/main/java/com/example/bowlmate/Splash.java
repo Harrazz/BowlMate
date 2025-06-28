@@ -4,6 +4,7 @@ import static androidx.core.content.ContextCompat.startActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.widget.Button;
 import android.widget.ImageButton;
 
@@ -13,6 +14,9 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class Splash extends AppCompatActivity {
 
@@ -26,6 +30,17 @@ public class Splash extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+//        to check if user login or logout
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null && user.isEmailVerified()) {
+            // ✅ Logged in and verified — go to MainActivity
+            new Handler().postDelayed(() -> {
+                startActivity(new Intent(Splash.this, MainActivity.class));
+                finish();
+            }, 500); // Optional slight delay to show splash
+            return;
+        }
 
         Button button = findViewById(R.id.button);
         button.setOnClickListener(v -> {
