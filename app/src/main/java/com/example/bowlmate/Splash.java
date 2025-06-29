@@ -35,10 +35,8 @@ public class Splash extends AppCompatActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null && user.isEmailVerified()) {
             // ✅ Logged in and verified — go to MainActivity
-            new Handler().postDelayed(() -> {
-                startActivity(new Intent(Splash.this, MainActivity.class));
-                finish();
-            }, 500); // Optional slight delay to show splash
+            startActivity(new Intent(Splash.this, MainActivity.class));
+            finish();
             return;
         }
 
