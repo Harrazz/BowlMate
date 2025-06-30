@@ -212,7 +212,9 @@ public class BowlingBall extends AppCompatActivity {
                 boolean matchesPerformance = performance.equals("All") || (ball.getPerformance() != null && ball.getPerformance().equalsIgnoreCase(performance));
                 boolean matchesSearch = searchQuery == null || searchQuery.isEmpty()
                         || (ball.getBrand() != null && ball.getBrand().toLowerCase().contains(searchQuery.toLowerCase()))
-                        || (ball.getModel() != null && ball.getModel().toLowerCase().contains(searchQuery.toLowerCase()));
+                        || (ball.getModel() != null && ball.getModel().toLowerCase().contains(searchQuery.toLowerCase()))
+                        || (ball.getPerformance() != null && ball.getPerformance().toLowerCase().contains(searchQuery.toLowerCase()))
+                        || (ball.getCoverstock() != null && ball.getCoverstock().toLowerCase().contains(searchQuery.toLowerCase()));
 
                 if (matchesBrand && matchesPerformance && matchesSearch) {
                     filteredList.add(ball);
