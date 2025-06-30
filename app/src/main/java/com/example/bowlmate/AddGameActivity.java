@@ -1,14 +1,17 @@
 package com.example.bowlmate;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.Timestamp;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -36,6 +39,14 @@ public class AddGameActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
 
         saveButton.setOnClickListener(v -> saveGame());
+
+        ImageButton backButton = findViewById(R.id.back_button);
+        backButton.setOnClickListener(v -> finish());
+
+        ImageButton infoButton = findViewById(R.id.info_button);
+        infoButton.setOnClickListener(v -> {
+            startActivity(new Intent(AddGameActivity.this, AboutApp.class));
+        });
     }
 
     private void saveGame() {
@@ -54,11 +65,27 @@ public class AddGameActivity extends AppCompatActivity {
         int strikes = Integer.parseInt(strikeStr);
         int spares = Integer.parseInt(spareStr);
 
+        if (score > 300) {
+            Toast.makeText(this, "Score cannot exceed 300", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (strikes > 12) {
+            Toast.makeText(this, "Strikes cannot exceed 12", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (spares > 11) {
+            Toast.makeText(this, "Spares cannot exceed 11", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         Map<String, Object> gameData = new HashMap<>();
         gameData.put("score", score);
         gameData.put("totalStrikes", strikes);
         gameData.put("totalSpares", spares);
         gameData.put("notes", notes);
+        gameData.put("timestamp", Timestamp.now());
 
         db.collection("users")
                 .document(uid)

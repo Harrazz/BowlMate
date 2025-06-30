@@ -1,14 +1,16 @@
 package com.example.bowlmate;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.*;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class EditGameActivity extends AppCompatActivity {
 
@@ -43,6 +45,14 @@ public class EditGameActivity extends AppCompatActivity {
         }
 
         updateButton.setOnClickListener(v -> updateGame());
+
+        ImageButton backButton = findViewById(R.id.back_button);
+        backButton.setOnClickListener(v -> finish());
+
+        ImageButton infoButton = findViewById(R.id.info_button);
+        infoButton.setOnClickListener(v -> {
+            startActivity(new Intent(EditGameActivity.this, AboutApp.class));
+        });
     }
 
     private void loadGameData() {
@@ -64,10 +74,34 @@ public class EditGameActivity extends AppCompatActivity {
     private void updateGame() {
         String uid = auth.getCurrentUser().getUid();
 
-        int score = Integer.parseInt(scoreInput.getText().toString().trim());
-        int strikes = Integer.parseInt(strikeInput.getText().toString().trim());
-        int spares = Integer.parseInt(spareInput.getText().toString().trim());
+        String scoreStr = scoreInput.getText().toString().trim();
+        String strikeStr = strikeInput.getText().toString().trim();
+        String spareStr = spareInput.getText().toString().trim();
         String notes = noteInput.getText().toString().trim();
+
+        if (scoreStr.isEmpty() || strikeStr.isEmpty() || spareStr.isEmpty()) {
+            Toast.makeText(this, "Please fill in all required fields", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        int score = Integer.parseInt(scoreStr);
+        int strikes = Integer.parseInt(strikeStr);
+        int spares = Integer.parseInt(spareStr);
+
+        if (score > 300) {
+            Toast.makeText(this, "Score cannot exceed 300", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (strikes > 12) {
+            Toast.makeText(this, "Strikes cannot exceed 12", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (spares > 11) {
+            Toast.makeText(this, "Spares cannot exceed 11", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         db.collection("users").document(uid).collection("games")
                 .document(gameId)

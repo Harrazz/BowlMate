@@ -3,6 +3,7 @@ package com.example.bowlmate;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +22,8 @@ public class BowlingScore extends AppCompatActivity {
     private RecyclerView recyclerView;
     private GameAdapter adapter;
     private List<Game> gameList;
+    private TextView averageScoreText;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +32,8 @@ public class BowlingScore extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
+        TextView averageScoreLabel = findViewById(R.id.averageScoreLabel);
+        TextView averageScoreValue = findViewById(R.id.averageScoreValue);
 
         ImageButton backButton = findViewById(R.id.back_button);
         backButton.setOnClickListener(v -> finish());
@@ -55,6 +60,7 @@ public class BowlingScore extends AppCompatActivity {
     private void loadGames() {
         String uid = auth.getCurrentUser().getUid();
         db.collection("users").document(uid).collection("games")
+                .orderBy("timestamp", Query.Direction.DESCENDING) // Sort by latest first
                 .addSnapshotListener((snapshots, e) -> {
                     if (e != null) {
                         Toast.makeText(this, "Failed to load games", Toast.LENGTH_SHORT).show();
@@ -62,12 +68,26 @@ public class BowlingScore extends AppCompatActivity {
                     }
 
                     gameList.clear();
+                    int totalScore = 0;
+
                     for (DocumentSnapshot doc : snapshots) {
                         Game game = doc.toObject(Game.class);
-                        game.setId(doc.getId());
-                        gameList.add(game);
+                        if (game != null) {
+                            game.setId(doc.getId());
+                            gameList.add(game);
+                            totalScore += game.getScore();
+                        }
                     }
+
                     adapter.notifyDataSetChanged();
+
+                    TextView averageScoreValue = findViewById(R.id.averageScoreValue);
+                    if (!gameList.isEmpty()) {
+                        int average = totalScore / gameList.size();
+                        averageScoreValue.setText(average + " / 300");
+                    } else {
+                        averageScoreValue.setText("- / 300");
+                    }
                 });
     }
 }

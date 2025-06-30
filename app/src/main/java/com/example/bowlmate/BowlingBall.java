@@ -63,7 +63,7 @@ public class BowlingBall extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         loadBowlingBalls();
 
-        String[] brands = {"All", "Storm", "Brunswick", "Hammer", "Roto Grip", "Columbia 300", "Motiv"};
+        String[] brands = {"All", "Storm", "Brunswick", "Hammer", "Roto Grip", "Columbia 300", "Motiv", "Ebonite", "900Global", "DV8"};
         String[] performances = {"All", "Plastic / Spare Balls", "Entry Level Balls", "Mid Performance Balls", "Upper Mid-Performance Balls", "High-Performance Balls" };
         String[] sorts = {"Default", "A-Z", "Z-A", "Price Low-High", "Price High-Low"};
 

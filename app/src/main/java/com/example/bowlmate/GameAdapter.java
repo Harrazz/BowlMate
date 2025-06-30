@@ -42,7 +42,6 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
         holder.scoreText.setText("Score: " + game.getScore());
         holder.strikeText.setText("Strikes: " + game.getTotalStrikes());
         holder.spareText.setText("Spares: " + game.getTotalSpares());
-        holder.noteText.setText("Note: " + (game.getNotes().isEmpty() ? "-" : game.getNotes()));
 
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, GameDetailActivity.class);
@@ -79,7 +78,7 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
 
     public static class GameViewHolder extends RecyclerView.ViewHolder {
 
-        TextView scoreText, strikeText, spareText, noteText;
+        TextView scoreText, strikeText, spareText;
         ImageButton deleteButton;
 
         public GameViewHolder(@NonNull View itemView) {
@@ -87,7 +86,6 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
             scoreText = itemView.findViewById(R.id.scoreText);
             strikeText = itemView.findViewById(R.id.strikeText);
             spareText = itemView.findViewById(R.id.spareText);
-            noteText = itemView.findViewById(R.id.noteText);
             deleteButton = itemView.findViewById(R.id.deleteButton);
         }
     }

@@ -3,6 +3,7 @@ package com.example.bowlmate;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,6 +47,14 @@ public class GameDetailActivity extends AppCompatActivity {
             Toast.makeText(this, "No game selected", Toast.LENGTH_SHORT).show();
             finish();
         }
+
+        ImageButton backButton = findViewById(R.id.back_button);
+        backButton.setOnClickListener(v -> finish());
+
+        ImageButton infoButton = findViewById(R.id.info_button);
+        infoButton.setOnClickListener(v -> {
+            startActivity(new Intent(GameDetailActivity.this, AboutApp.class));
+        });
     }
 
     private void loadGame(String gameId) {
