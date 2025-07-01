@@ -32,10 +32,11 @@
             android:id="@+id/averageScoreLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/allan_bold"
             android:text="Average Score"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="#000000" />
+            android:textColor="#000000"
+            android:textSize="25sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/averageScoreValue"
@@ -44,7 +45,8 @@
             android:text="- / 300"
             android:textSize="16sp"
             android:textColor="#555555"
-            android:paddingTop="4dp"/>
+            android:paddingTop="4dp"
+            android:textStyle="bold"/>
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
