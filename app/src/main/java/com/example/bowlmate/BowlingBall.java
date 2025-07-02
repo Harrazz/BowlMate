@@ -221,7 +221,7 @@ public class BowlingBall extends AppCompatActivity {
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
                 int width = (int)(context.getResources().getDisplayMetrics().widthPixels * 0.90);
-                int height = ViewGroup.LayoutParams.WRAP_CONTENT;
+                int height = (int)(context.getResources().getDisplayMetrics().heightPixels * 0.70);
                 dialog.getWindow().setLayout(width, height);
             }
 
