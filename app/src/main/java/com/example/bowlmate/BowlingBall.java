@@ -9,6 +9,9 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -20,18 +23,15 @@ import android.Manifest;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.appcompat.widget.SearchView;
 
 import com.bumptech.glide.Glide;
-import com.google.firebase.firestore.*;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -213,14 +213,17 @@ public class BowlingBall extends AppCompatActivity {
             return ballList.size();
         }
 
-        // Method to show the detail dialog
         private void showBallDetailDialog(BowlingBallModel ball) {
             final Dialog dialog = new Dialog(context);
             dialog.setContentView(R.layout.dialog_bowling_ball_detail);
+
             if (dialog.getWindow() != null) {
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-            }
 
+                int width = (int)(context.getResources().getDisplayMetrics().widthPixels * 0.90);
+                int height = ViewGroup.LayoutParams.WRAP_CONTENT;
+                dialog.getWindow().setLayout(width, height);
+            }
 
             ImageView dialogImage = dialog.findViewById(R.id.dialog_ball_image);
             TextView dialogBrand = dialog.findViewById(R.id.dialog_ball_brand);
@@ -231,7 +234,6 @@ public class BowlingBall extends AppCompatActivity {
             TextView dialogDescription = dialog.findViewById(R.id.dialog_ball_description);
             Button closeButton = dialog.findViewById(R.id.dialog_close_button);
 
-            // Populate the dialog views with ball data
             Glide.with(context).load(ball.getImageUrl()).into(dialogImage);
             dialogBrand.setText(ball.getBrand());
             dialogModel.setText(ball.getModel());
