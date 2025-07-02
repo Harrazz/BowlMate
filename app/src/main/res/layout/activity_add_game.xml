@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     android:background="@drawable/background">
 
-    <!-- Include Header -->
     <include
         android:id="@+id/header"
         layout="@layout/header"
@@ -13,7 +12,6 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- ScrollView starts below header -->
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="0dp"
@@ -40,13 +38,32 @@
                 android:textColor="@color/black"
                 android:fontFamily="@font/allan_bold" />
 
-            <!-- Score Input -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/titleLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:boxBackgroundMode="outline"
+                app:boxStrokeColor="#FF2C38"
+                app:hintTextColor="#FF2C38">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/titleInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Game Title"
+                    android:inputType="textCapSentences"
+                    android:textColor="@color/black"
+                    android:textCursorDrawable="@null" />
+            </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/scoreLayout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 app:boxBackgroundMode="outline"
                 app:boxStrokeColor="#FF2C38"
                 app:hintTextColor="#FF2C38">
@@ -61,7 +78,6 @@
                     android:textCursorDrawable="@null" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Strikes Input -->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/strikeLayout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -82,7 +98,6 @@
                     android:textCursorDrawable="@null" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Spares Input -->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/spareLayout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -103,7 +118,6 @@
                     android:textCursorDrawable="@null" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Notes Input -->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/noteLayout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"

@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-import androidx.annotation.NonNull;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,7 +22,7 @@ public class BowlingScore extends AppCompatActivity {
     private RecyclerView recyclerView;
     private GameAdapter adapter;
     private List<Game> gameList;
-    private TextView averageScoreText;
+    private TextView averageScoreText; // This variable is not used, can be removed if not needed.
 
 
     @Override
@@ -74,6 +74,10 @@ public class BowlingScore extends AppCompatActivity {
                         Game game = doc.toObject(Game.class);
                         if (game != null) {
                             game.setId(doc.getId());
+                            // Timestamp might be null for older entries, handle it
+                            if (doc.getTimestamp("timestamp") != null) {
+                                game.setTimestamp(doc.getTimestamp("timestamp"));
+                            }
                             gameList.add(game);
                             totalScore += game.getScore();
                         }

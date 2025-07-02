@@ -42,6 +42,26 @@
                     android:padding="20dp">
 
                     <TextView
+                        android:id="@+id/detailTitleText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Game: "
+                        android:textColor="@color/black"
+                        android:textSize="28sp"
+                        android:textStyle="bold"
+                        android:gravity="center_horizontal" />
+
+                    <TextView
+                        android:id="@+id/detailDateText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Date: "
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:gravity="center_horizontal"
+                        android:layout_marginTop="8dp" />
+
+                    <TextView
                         android:id="@+id/detailScoreText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -49,7 +69,8 @@
                         android:textColor="@color/black"
                         android:textSize="28sp"
                         android:textStyle="bold"
-                        android:gravity="center_horizontal" />
+                        android:gravity="center_horizontal"
+                        android:layout_marginTop="12dp" />
 
                     <TextView
                         android:id="@+id/detailStrikeText"
@@ -58,6 +79,7 @@
                         android:text="Strikes: 0"
                         android:textColor="@color/black"
                         android:textSize="20sp"
+                        android:gravity="center_horizontal"
                         android:layout_marginTop="12dp" />
 
                     <TextView
@@ -67,6 +89,7 @@
                         android:text="Spares: 0"
                         android:textColor="@color/black"
                         android:textSize="20sp"
+                        android:gravity="center_horizontal"
                         android:layout_marginTop="4dp" />
 
                     <TextView

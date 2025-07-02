@@ -39,11 +39,31 @@
                 android:fontFamily="@font/allan_bold" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/scoreLayout"
+                android:id="@+id/titleLayout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                app:boxBackgroundMode="outline"
+                app:boxStrokeColor="#FF2C38"
+                app:hintTextColor="#FF2C38">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/titleInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Game Title"
+                    android:inputType="textCapSentences"
+                    android:textColor="@color/black"
+                    android:textCursorDrawable="@null" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/scoreLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 app:boxBackgroundMode="outline"
                 app:boxStrokeColor="#FF2C38"
                 app:hintTextColor="#FF2C38">

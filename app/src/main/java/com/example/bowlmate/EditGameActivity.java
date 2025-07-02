@@ -14,7 +14,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class EditGameActivity extends AppCompatActivity {
 
-    private EditText scoreInput, strikeInput, spareInput, noteInput;
+    private EditText titleInput, scoreInput, strikeInput, spareInput, noteInput; // Added titleInput
     private Button updateButton;
 
     private FirebaseAuth auth;
@@ -26,6 +26,7 @@ public class EditGameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_game);
 
+        titleInput = findViewById(R.id.titleInput);
         scoreInput = findViewById(R.id.scoreInput);
         strikeInput = findViewById(R.id.strikeInput);
         spareInput = findViewById(R.id.spareInput);
@@ -62,6 +63,7 @@ public class EditGameActivity extends AppCompatActivity {
                 .get()
                 .addOnSuccessListener(doc -> {
                     if (doc.exists()) {
+                        titleInput.setText(doc.getString("title")); // Set title
                         scoreInput.setText(String.valueOf(doc.getLong("score")));
                         strikeInput.setText(String.valueOf(doc.getLong("totalStrikes")));
                         spareInput.setText(String.valueOf(doc.getLong("totalSpares")));
@@ -74,12 +76,14 @@ public class EditGameActivity extends AppCompatActivity {
     private void updateGame() {
         String uid = auth.getCurrentUser().getUid();
 
+        String title = titleInput.getText().toString().trim(); // Get title
         String scoreStr = scoreInput.getText().toString().trim();
         String strikeStr = strikeInput.getText().toString().trim();
         String spareStr = spareInput.getText().toString().trim();
         String notes = noteInput.getText().toString().trim();
 
-        if (scoreStr.isEmpty() || strikeStr.isEmpty() || spareStr.isEmpty()) {
+        // Validate title
+        if (title.isEmpty() || scoreStr.isEmpty() || strikeStr.isEmpty() || spareStr.isEmpty()) {
             Toast.makeText(this, "Please fill in all required fields", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -105,7 +109,8 @@ public class EditGameActivity extends AppCompatActivity {
 
         db.collection("users").document(uid).collection("games")
                 .document(gameId)
-                .update("score", score,
+                .update("title", title, // Update title
+                        "score", score,
                         "totalStrikes", strikes,
                         "totalSpares", spares,
                         "notes", notes)

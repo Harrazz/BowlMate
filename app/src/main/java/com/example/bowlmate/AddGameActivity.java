@@ -6,6 +6,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
+import android.media.MediaPlayer;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,17 +19,18 @@ import java.util.Map;
 
 public class AddGameActivity extends AppCompatActivity {
 
-    private EditText scoreInput, strikeInput, spareInput, noteInput;
+    private EditText titleInput, scoreInput, strikeInput, spareInput, noteInput;
     private Button saveButton;
-
     private FirebaseAuth auth;
     private FirebaseFirestore db;
+    private MediaPlayer mediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_game);
 
+        titleInput = findViewById(R.id.titleInput);
         scoreInput = findViewById(R.id.scoreInput);
         strikeInput = findViewById(R.id.strikeInput);
         spareInput = findViewById(R.id.spareInput);
@@ -37,6 +39,8 @@ public class AddGameActivity extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
+
+        mediaPlayer = MediaPlayer.create(this, R.raw.gameadd);
 
         saveButton.setOnClickListener(v -> saveGame());
 
@@ -51,12 +55,14 @@ public class AddGameActivity extends AppCompatActivity {
 
     private void saveGame() {
         String uid = auth.getCurrentUser().getUid();
+        String title = titleInput.getText().toString().trim();
         String scoreStr = scoreInput.getText().toString().trim();
         String strikeStr = strikeInput.getText().toString().trim();
         String spareStr = spareInput.getText().toString().trim();
         String notes = noteInput.getText().toString().trim();
 
-        if (scoreStr.isEmpty() || strikeStr.isEmpty() || spareStr.isEmpty()) {
+        // Validate title as well
+        if (title.isEmpty() || scoreStr.isEmpty() || strikeStr.isEmpty() || spareStr.isEmpty()) {
             Toast.makeText(this, "Please fill in all required fields", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -81,6 +87,7 @@ public class AddGameActivity extends AppCompatActivity {
         }
 
         Map<String, Object> gameData = new HashMap<>();
+        gameData.put("title", title);
         gameData.put("score", score);
         gameData.put("totalStrikes", strikes);
         gameData.put("totalSpares", spares);
@@ -93,7 +100,10 @@ public class AddGameActivity extends AppCompatActivity {
                 .add(gameData)
                 .addOnSuccessListener(doc -> {
                     Toast.makeText(this, "Game saved", Toast.LENGTH_SHORT).show();
-                    finish(); // close this activity
+                    if (mediaPlayer != null) {
+                        mediaPlayer.start();
+                    }
+                    finish();
                 })
                 .addOnFailureListener(e -> Toast.makeText(this, "Failed to save", Toast.LENGTH_SHORT).show());
     }

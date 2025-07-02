@@ -30,27 +30,33 @@
             android:layout_marginEnd="12dp">
 
             <TextView
+                android:id="@+id/titleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#000"
+                android:text="Game Title" />
+
+            <TextView
+                android:id="@+id/dateText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="#555555"
+                android:text="Date: MM DD, YYYY"
+                android:layout_marginTop="2dp" />
+
+            <TextView
                 android:id="@+id/scoreText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:textColor="#000"
-                android:text="Score: 0" />
+                android:text="Score: 0"
+                android:layout_marginTop="4dp" />
 
-            <TextView
-                android:id="@+id/strikeText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:text="Strikes: 0" />
-
-            <TextView
-                android:id="@+id/spareText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:text="Spares: 0" />
         </LinearLayout>
 
         <ImageButton

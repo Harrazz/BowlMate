@@ -9,12 +9,16 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.*;
 
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+
 public class GameDetailActivity extends AppCompatActivity {
 
-    private TextView scoreText, strikeText, spareText, noteText;
+    private TextView titleText, dateText, scoreText, strikeText, spareText, noteText; // Added titleText and dateText
 
     private FirebaseAuth auth;
     private FirebaseFirestore db;
@@ -24,6 +28,8 @@ public class GameDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_detail);
 
+        titleText = findViewById(R.id.detailTitleText);
+        dateText = findViewById(R.id.detailDateText);
         scoreText = findViewById(R.id.detailScoreText);
         strikeText = findViewById(R.id.detailStrikeText);
         spareText = findViewById(R.id.detailSpareText);
@@ -67,10 +73,22 @@ public class GameDetailActivity extends AppCompatActivity {
                 .get()
                 .addOnSuccessListener(doc -> {
                     if (doc.exists()) {
+                        titleText.setText("Game: " + doc.getString("title")); // Set title
                         scoreText.setText("Score: " + doc.getLong("score"));
                         strikeText.setText("Strikes: " + doc.getLong("totalStrikes"));
                         spareText.setText("Spares: " + doc.getLong("totalSpares"));
                         noteText.setText("Notes: " + doc.getString("notes"));
+
+                        // Format and set the date
+                        Timestamp timestamp = doc.getTimestamp("timestamp");
+                        if (timestamp != null) {
+                            SimpleDateFormat sdf = new SimpleDateFormat("MMM dd, yyyy HH:mm", Locale.getDefault());
+                            String formattedDate = sdf.format(timestamp.toDate());
+                            dateText.setText("Date: " + formattedDate);
+                        } else {
+                            dateText.setText("Date: N/A");
+                        }
+
                     } else {
                         Toast.makeText(this, "Game not found", Toast.LENGTH_SHORT).show();
                     }

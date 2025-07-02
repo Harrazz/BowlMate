@@ -16,7 +16,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 
 public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder> {
 
@@ -39,9 +41,16 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
     public void onBindViewHolder(@NonNull GameViewHolder holder, int position) {
         Game game = gameList.get(position);
 
+        holder.titleText.setText(game.getTitle());
         holder.scoreText.setText("Score: " + game.getScore());
-        holder.strikeText.setText("Strikes: " + game.getTotalStrikes());
-        holder.spareText.setText("Spares: " + game.getTotalSpares());
+
+        if (game.getTimestamp() != null) {
+            SimpleDateFormat sdf = new SimpleDateFormat("MMM dd, yyyy", Locale.getDefault());
+            String formattedDate = sdf.format(game.getTimestamp().toDate());
+            holder.dateText.setText(formattedDate);
+        } else {
+            holder.dateText.setText("No Date");
+        }
 
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, GameDetailActivity.class);
@@ -78,14 +87,17 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
 
     public static class GameViewHolder extends RecyclerView.ViewHolder {
 
-        TextView scoreText, strikeText, spareText;
+        TextView titleText, scoreText, dateText; // Added titleText and dateText
+        // TextView strikeText, spareText; // Removed for BowlingScore card
         ImageButton deleteButton;
 
         public GameViewHolder(@NonNull View itemView) {
             super(itemView);
+            titleText = itemView.findViewById(R.id.titleText); // Initialize titleText
             scoreText = itemView.findViewById(R.id.scoreText);
-            strikeText = itemView.findViewById(R.id.strikeText);
-            spareText = itemView.findViewById(R.id.spareText);
+            dateText = itemView.findViewById(R.id.dateText); // Initialize dateText
+            // strikeText = itemView.findViewById(R.id.strikeText);
+            // spareText = itemView.findViewById(R.id.spareText);
             deleteButton = itemView.findViewById(R.id.deleteButton);
         }
     }
