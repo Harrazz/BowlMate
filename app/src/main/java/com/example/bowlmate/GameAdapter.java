@@ -41,15 +41,16 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
     public void onBindViewHolder(@NonNull GameViewHolder holder, int position) {
         Game game = gameList.get(position);
 
-        holder.titleText.setText(game.getTitle());
+        holder.titleText.setText(game.getTitle()); // Set the game title
         holder.scoreText.setText("Score: " + game.getScore());
 
+        // Format and set the date
         if (game.getTimestamp() != null) {
             SimpleDateFormat sdf = new SimpleDateFormat("MMM dd, yyyy", Locale.getDefault());
             String formattedDate = sdf.format(game.getTimestamp().toDate());
             holder.dateText.setText(formattedDate);
         } else {
-            holder.dateText.setText("No Date");
+            holder.dateText.setText("No Date"); // Handle cases where timestamp might be missing
         }
 
         holder.itemView.setOnClickListener(v -> {

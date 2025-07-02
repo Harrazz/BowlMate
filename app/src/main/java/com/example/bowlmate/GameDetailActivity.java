@@ -28,8 +28,8 @@ public class GameDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_detail);
 
-        titleText = findViewById(R.id.detailTitleText);
-        dateText = findViewById(R.id.detailDateText);
+        titleText = findViewById(R.id.detailTitleText); // Initialize titleText
+        dateText = findViewById(R.id.detailDateText);   // Initialize dateText
         scoreText = findViewById(R.id.detailScoreText);
         strikeText = findViewById(R.id.detailStrikeText);
         spareText = findViewById(R.id.detailSpareText);

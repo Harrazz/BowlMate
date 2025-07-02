@@ -9,7 +9,7 @@ public class Game {
     private int totalStrikes;
     private int totalSpares;
     private String notes;
-    private Timestamp timestamp;
+    private Timestamp timestamp; // Use com.google.firebase.Timestamp
 
     public Game() {} // Required for Firestore deserialization
 
