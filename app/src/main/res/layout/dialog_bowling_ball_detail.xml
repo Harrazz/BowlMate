@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@drawable/background_dialog"> <ImageView
+    android:id="@+id/dialog_ball_image"
+    android:layout_width="150dp"
+    android:layout_height="150dp"
+    android:layout_gravity="center_horizontal"
+    android:scaleType="centerInside"
+    android:layout_marginBottom="16dp"
+    android:contentDescription="Bowling Ball Image" />
+
+    <TextView
+        android:id="@+id/dialog_ball_brand"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:text="Brand"
+        android:layout_marginBottom="4dp" />
+
+    <TextView
+        android:id="@+id/dialog_ball_model"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="Model"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:id="@+id/dialog_ball_coverstock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:text="Coverstock: "
+        android:layout_marginBottom="4dp" />
+
+    <TextView
+        android:id="@+id/dialog_ball_performance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:text="Performance: "
+        android:layout_marginBottom="4dp" />
+
+    <TextView
+        android:id="@+id/dialog_ball_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:text="Price"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:id="@+id/dialog_ball_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:text="Description"
+        android:layout_marginBottom="16dp"
+        android:scrollbars="vertical" /> <Button
+        android:id="@+id/dialog_close_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:backgroundTint="#FF2C38"
+        android:text="Close" />
+
+</LinearLayout>

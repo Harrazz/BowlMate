@@ -1,13 +1,17 @@
 package com.example.bowlmate;
 
+import android.app.Dialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -111,10 +115,10 @@ public class BowlingBall extends AppCompatActivity {
         ImageButton micButton = findViewById(R.id.mic_button);
         micButton.setOnClickListener(v -> startVoiceInput());
 
-        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.RECORD_AUDIO)
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
                 != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this,
-                    new String[]{android.Manifest.permission.RECORD_AUDIO}, 1);
+                    new String[]{Manifest.permission.RECORD_AUDIO}, 1);
         }
     }
 
@@ -155,8 +159,9 @@ public class BowlingBall extends AppCompatActivity {
         });
     }
 
+
     public static class BowlingBallModel {
-        private String imageUrl, brand, model, coverstock, performance;
+        private String imageUrl, brand, model, coverstock, performance, description;
         private double price;
 
         public BowlingBallModel() {}
@@ -167,6 +172,7 @@ public class BowlingBall extends AppCompatActivity {
         public String getCoverstock() { return coverstock; }
         public String getPerformance() { return performance; }
         public double getPrice() { return price; }
+        public String getDescription() { return description; }
     }
 
     public static class BowlingBallAdapter extends RecyclerView.Adapter<BowlingBallAdapter.BallViewHolder> {
@@ -197,11 +203,46 @@ public class BowlingBall extends AppCompatActivity {
             holder.performance.setText("Performance: " + ball.getPerformance());
             holder.price.setText("RM " + String.format("%.2f", ball.getPrice()));
             Glide.with(context).load(ball.getImageUrl()).into(holder.image);
+
+            // Set OnClickListener for the entire card view
+            holder.itemView.setOnClickListener(v -> showBallDetailDialog(ball));
         }
 
         @Override
         public int getItemCount() {
             return ballList.size();
+        }
+
+        // Method to show the detail dialog
+        private void showBallDetailDialog(BowlingBallModel ball) {
+            final Dialog dialog = new Dialog(context);
+            dialog.setContentView(R.layout.dialog_bowling_ball_detail);
+            if (dialog.getWindow() != null) {
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            }
+
+
+            ImageView dialogImage = dialog.findViewById(R.id.dialog_ball_image);
+            TextView dialogBrand = dialog.findViewById(R.id.dialog_ball_brand);
+            TextView dialogModel = dialog.findViewById(R.id.dialog_ball_model);
+            TextView dialogCoverstock = dialog.findViewById(R.id.dialog_ball_coverstock);
+            TextView dialogPerformance = dialog.findViewById(R.id.dialog_ball_performance);
+            TextView dialogPrice = dialog.findViewById(R.id.dialog_ball_price);
+            TextView dialogDescription = dialog.findViewById(R.id.dialog_ball_description);
+            Button closeButton = dialog.findViewById(R.id.dialog_close_button);
+
+            // Populate the dialog views with ball data
+            Glide.with(context).load(ball.getImageUrl()).into(dialogImage);
+            dialogBrand.setText(ball.getBrand());
+            dialogModel.setText(ball.getModel());
+            dialogCoverstock.setText("Coverstock: " + ball.getCoverstock());
+            dialogPerformance.setText("Performance: " + ball.getPerformance());
+            dialogPrice.setText("RM " + String.format("%.2f", ball.getPrice()));
+            dialogDescription.setText(ball.getDescription());
+
+            closeButton.setOnClickListener(v -> dialog.dismiss());
+
+            dialog.show();
         }
 
         public void applyFilters(String brand, String performance, String sortOption, String searchQuery) {
