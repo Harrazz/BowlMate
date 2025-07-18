@@ -57,7 +57,7 @@ public class BowlingLocation extends FragmentActivity implements OnMapReadyCallb
     private LatLng currentLatLng;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 44;
 
-    private static final String API_KEY = "AIzaSyDr64tr-Y3YopYDi7PmbUou96Q0o3wSYlI";
+    private static final String API_KEY = "API KEY";
     private LinearLayout locationList;
 
     @Override
